@@ -1,0 +1,317 @@
+
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def print_name(name,age,hope, dream = "US"):
+    print(name,age,hope)
+    print(dream)
+
+print_name(name = "Frank", age = 13, hope = "Actor")
+
+def house_builder(residents,cost,*args,**kwargs):
+    print(residents, cost)
+    for arg in args:
+        print(arg)
+    for key in kwargs:
+        print(key,kwargs[key])
+
+house_builder(2,"£20000", "Finland","Australia","Brazil",desirability = "Very desirable")
+
+
+
+def breakfree(*args,d,e):
+    print(args[0:1], d,e)
+
+breakfree(1,2,d = 3, e =4)
+
+
+members1 = ["Max","Francis","Beatrice","Heloise"]
+def members(a,b,c,d):
+    print(a,b,c,d)
+
+members(*members1)
+
+def wordsofday(uno,dos,tres):
+    print(uno,dos,tres)
+
+wld = dict(moin="hi",tschuess = "bye",aufwiedersehen = "till the next time")
+
+wordsofday(*wld)
+
+
+def moy(Jan,Feb,March):
+    print(Jan,Feb,March)
+
+rc = {"Jan":"Germinal","Feb":"Floréal","March":"Prairial"}
+moy(**rc)
+
+nom = 5
+
+def nomcha():
+    global nom
+    nom = 3
+    nom += nom
+    print(nom)
+
+nomcha()
+print(nom)
+
+#***************************
+#*******************
+a = 0
+b = 1
+c = a + b
+num = [b] * 10
+numbers = [x * 2 for x in num]
+print(numbers)
+first, *end = numbers
+print(end,first)
+
+bl = []
+for i in range(1,20):
+    bl.append(i)
+
+print(bl)
+beginning, middle, fourthlast, *end = bl
+print(beginning)
+print(middle)
+print(fourthlast)
+print(end)
+
+mario = (1,2,3,4)
+luigi = (5,6,7,8)
+new = [*mario,*luigi]
+print(new)
+
+listas = [i * 2 for i in range(1,20)]
+print(listas)
+listbs = [i/4 for i in listas]
+listcs = [*listas, *listbs]
+print(listcs)
+
+def beebuilder(lat,long,*,bees,species):
+    print(lat,long,bees,species)
+
+def uppone(lista):
+    blank = []
+    for i in lista:
+        blank.append(i + 1)
+    print(blank)
+
+listw = [1,2,3]
+uppone(listw)
+
+
+dica = {"A":1,"B":2,"C":3}
+dicb =  {"D":4,"E":5,"F":6}
+dicc = {**dica,**dicb}
+print(dicc)
+
+org = 4
+cpy = org
+cpy = 6
+
+
+import copy
+#shallow copy
+#deep copy
+listar = [4,546,45,35],[3,4]
+listbr = copy.deepcopy(listar)
+listbr[0][2] = -19
+print(listbr,listar)
+
+class Person:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+pe = Person("Ana",29)
+p2 = copy.copy(pe)
+p2.age = 54
+print(pe.age,p2.age)
+
+class Company:
+    def __init__(self,boss,employee):
+        self.boss = boss
+        self.employee = employee
+
+personA = Person("Frank",16)
+personB = Person("Eliza",65)
+
+delta = Company(personA,personB)
+delta.boss.age = 43
+
+with open("notes.txt","w") as file:
+    file.write("This is a first line")
+
+file = open("notes.txt","w")
+try:
+    file.write("hsdlsdkf")
+finally:
+    file.close()
+
+from threading import Lock
+lock = Lock()
+
+lock.acquire()
+lock.release()
+
+
+class ManagedFile:
+    def __init__(self,filename):
+        print("init")
+        self.filename = filename
+
+    def __enter__(self):
+        print("Enter")
+        self.file = open(self.filename, "w")
+        return self.filename
+
+    def __exit__(self,exc_type,exc_value,exc_traceback):
+        if self.file:
+            self.file.close()
+        if exc_type is not None:
+            print("exception has been handled")
+        print("exc:",exc_type,exc_value)
+        print("exit")
+        return True
+
+with ManagedFile("notes.txt") as file:
+    print("do some stuff")
+    file.write("some todo...")
+    file.somemethod()
+print("continuing")
+
+from contextlib import contextmanager
+
+@contextmanager
+def open_managed_file(filename):
+    f = open(filename,"w")
+    try:
+        yield f
+    finally:
+        f.close()
+
+with open_managed_file("notes.txt") as f:
+    f.write("some to do")
+
+
+beebuilder(5,6,bees = 312,species = "Worker_bee")
+
+
+def changa(y):
+    global lista
+    lista += [5,12321,14]
+    y = lista
+    print(y)
+
+lista = [10,1,18]
+changa(lista)
+print(lista)
+
+
+#Dual N Back Clean up
+import random, time, pytimedinput
+
+
+try:
+    pr = int(input("Enter position range"))
+except:
+    print("Invalid input")
+while type(pr) != int:
+    try:
+        pr = int(input("Enter position range"))
+    except:
+        print("Invalid input")
+
+
+try:
+    cr = int(input("Enter colour range"))
+except:
+    print("Invalid input")
+while type(cr) != int:
+    try:
+        cr = int(input("Enter colour range"))
+    except:
+        print("Invalid input")
+
+try:
+    mr = int(input("Enter motion range"))
+except:
+    print("Invalid input")
+while type(mr) != int:
+    try:
+        mr = int(input("Enter motion range"))
+    except:
+        print("Invalid input")
+
+class Cube:
+    def __init__(self):
+        self.positionrange = pr
+        self.colourrange = cr
+        self.soundrange = [0,0,0]
+        self.motionrange = mr
+        self.cubesgenerated = 5
+        self.cubelist = []
+        self.dupchance = 2
+        self.nback = 2
+        self.cinterval = 1
+        self.matchcube = 1
+        self.correctanswers = 1
+        self.pcorrect = self.correctanswers/self.matchcube
+
+    def decorator(func):
+        def wrapper(*args,**kwargs):
+            result = func(*args,**kwargs)
+            try:
+                s = time.time()
+                match = input("a for match, l for non-match")
+                e = time.time()
+                if match == "a":
+                    try:
+                        if result == Cube.self.cubelist[-Cube.self.nback]:
+                            Cube.self.matchcube += 1
+                            if match != Cube.cubelist[-Cube.nback]:
+                                return
+                            Cube.correctanswers += 1
+                    except:
+                        pass
+            except:
+                pass
+        return wrapper
+
+    @decorator
+    def generatecube(Cube):
+        result = dict(position = [random.randint(0,Cube.positionrange), random.randint(0,Cube.positionrange), random.randint(0,Cube.positionrange)],colour = [random.randint(0,Cube.colourrange), random.randint(0,Cube.colourrange), random.randint(0,Cube.colourrange)], motion = [random.randint(0,Cube.motionrange), random.randint(0,Cube.motionrange), random.randint(0,Cube.motionrange)])
+        if random.randrange(0,10,1) < Cube.dupchance:
+            if len(Cube.cubelist) > Cube.nback:
+                result = Cube.cubelist[-Cube.nback]
+        print(result)
+        Cube.cubelist.append(result)
+        return result
+
+
+
+
+
+
+c1 = Cube()
+
+for _ in range(c1.cubesgenerated):
+    c1.generatecube()
+
+print(c1.cubelist)
+print(c1.correctanswers)
+
+
+
+
+
